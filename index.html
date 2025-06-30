@@ -3,100 +3,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Akash Garg | Astrophysicist</title>
+  <title>Akash Garg</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
+    html, body {
       margin: 0;
       padding: 0;
-      background-color: #f9f9f9;
-      color: #333;
-      line-height: 1.6;
+      height: 100%;
+      background-color: black;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
     }
 
-    header {
-      background-color: #1a1a1a;
+    #stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background: black;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0;
+      animation: twinkle 5s linear forwards;
+    }
+
+    @keyframes twinkle {
+      to {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+    }
+
+    #name {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       color: white;
-      padding: 1.5rem 1rem;
-      text-align: center;
+      font-size: 3em;
+      opacity: 0;
+      animation: fadeIn 4s ease-in-out 3s forwards;
+      z-index: 1;
     }
 
-    main {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-
-    h1, h2 {
-      color: #444;
-    }
-
-    .links a {
-      margin-right: 15px;
-      text-decoration: none;
-      color: #1a73e8;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
-      font-size: 0.9rem;
-      color: #777;
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
     }
   </style>
 </head>
 <body>
+  <div id="stars"></div>
+  <div id="name">Akash Garg</div>
 
-<header>
-  <h1>Akash Garg</h1>
-  <p>Astrophysicist | X-ray Binaries | High-Energy Astrophysics | Machine Learning</p>
-</header>
+  <script>
+    const numStars = 150;
+    const container = document.getElementById('stars');
 
-<main>
-  <section>
-    <h2>About Me</h2>
-    <p>
-      I am a postdoctoral researcher in astrophysics, specializing in the study of accretion dynamics and radiative processes in X-ray binaries. 
-      My work focuses on spectral-timing and polarization analyses using data from missions like IXPE, AstroSat, and NICER.
-    </p>
-  </section>
-
-  <section>
-    <h2>Research Interests</h2>
-    <ul>
-      <li>Accretion physics in black hole X-ray binaries</li>
-      <li>X-ray polarization and spectro-temporal modeling</li>
-      <li>Multi-wavelength observations</li>
-      <li>Application of machine learning in high-energy astrophysics</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Links</h2>
-    <div class="links">
-      <a href="https://github.com/akashgarg16" target="_blank">GitHub</a>
-      <a href="https://www.researchgate.net/profile/Akash-Garg-23" target="_blank">ResearchGate</a>
-      <a href="CV.pdf" target="_blank">Download CV</a> <!-- Place your CV in the repo -->
-    </div>
-  </section>
-
-  <!-- Optional -->
-  <!--
-  <section>
-    <h2>Selected Publications</h2>
-    <ul>
-      <li>Garg, A. et al. (2023). "Title of your paper". <em>Journal Name</em>.</li>
-      <li>... add more as needed ...</li>
-    </ul>
-  </section>
-  -->
-</main>
-
-<footer>
-  &copy; 2025 Akash Garg. All rights reserved.
-</footer>
-
+    for (let i = 0; i < numStars; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 3}s`;
+      container.appendChild(star);
+    }
+  </script>
 </body>
 </html>
-
