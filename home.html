@@ -37,24 +37,27 @@
     }
     header h1 {
       margin: 0;
-      font-size: 4rem; /* Increased font size */
+      font-size: 4rem;
     }
     nav {
       margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
     }
     nav a {
       color: #fff;
       text-decoration: none;
-      margin: 0 15px;
       font-weight: bold;
       transition: 0.3s;
-      font-size: 1.4rem; /* Slightly bigger */
+      font-size: 1.4rem;
     }
     nav a:hover {
       color: #ffdd57;
     }
     section {
-      padding: 40px 10px;
+      padding: 40px 15px;
       max-width: 1100px;
       margin: auto;
     }
@@ -64,7 +67,8 @@
       font-size: 2rem;
       color: blueviolet;
     }
-    /* Flexbox layout for research section */
+
+    /* Research */
     .research-container {
       display: flex;
       flex-wrap: wrap;
@@ -73,15 +77,120 @@
     }
     .research-text {
       flex: 2;
+      min-width: 250px;
     }
     .research-image {
       flex: 1;
+      min-width: 250px;
     }
     .research-image img {
       max-width: 100%;
       height: auto;
       border-radius: 8px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    /* CV */
+    #cv {
+      padding: 50px 15px;
+    }
+    .cv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+    .cv-column {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 10px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    .cv-column h3 {
+      color: #ffdd57;
+      margin-bottom: 15px;
+      font-size: 1.3em;
+    }
+    .cv-column ul {
+      list-style: none;
+      padding: 0;
+    }
+    .cv-column ul li {
+      margin-bottom: 5px;
+    }
+
+    /* Outreach */
+    #outreach iframe {
+      width: 100%;
+      max-width: 700px;
+      height: 315px;
+      border-radius: 8px;
+    }
+
+    /* Poems */
+    .poem-gallery {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+    .poem-gallery img {
+      width: 200px;
+      height: auto;
+      cursor: pointer;
+      border-radius: 12px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    .poem-gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 18px rgba(0,0,0,0.4);
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background: rgba(0,0,0,0.8);
+      text-align: center;
+    }
+    .modal-content {
+      max-width: 90%;
+      max-height: 80%;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.6);
+      border-radius: 12px;
+    }
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      header h1 { font-size: 3rem; }
+      nav a { font-size: 1.2rem; }
+      .cv-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      header { height: 300px; padding: 10px; }
+      header h1 { font-size: 2.2rem; }
+      nav { flex-direction: column; gap: 10px; }
+      nav a { font-size: 1rem; }
+      .research-container { flex-direction: column; }
+      .cv-grid { grid-template-columns: 1fr; }
+      .poem-gallery img { width: 100%; max-width: 320px; }
     }
   </style>
 </head>
@@ -108,7 +217,6 @@
           I am also interested in accretion-jet coupling, as well as the physical properties of the compact and companion
           stars in X-ray transients. Towards my interests, I have been studying the spectral, temporal, and
           polarisation properties of X-ray binaries using a mix of traditional astronomy and modern machine learning methods. 
-          <!-- My past and current projects can be broadly classified into the following categories. -->
         </p>
       </div>
       <div class="research-image">
@@ -118,184 +226,89 @@
   </section>
 
   <section id="cv">
-  <h2>Curriculum Vitae</h2>
-  <div class="cv-grid">
-    <div class="cv-column">
-      <h3>Research Interests</h3>
-      <ul>
-        <li>Physics of accretion and ejection processes in compact objects (black holes, neutron stars).</li>
-        <li>Application of machine learning (ML) and deep learning (DL) techniques in time-series classification,
-anomaly detection, and source characterization in X-ray astronomy</li>
-      </ul>
+    <h2>Curriculum Vitae</h2>
+    <div class="cv-grid">
+      <div class="cv-column">
+        <h3>Research Interests</h3>
+        <ul>
+          <li>Physics of accretion and ejection processes in compact objects (black holes, neutron stars).</li>
+          <li>Application of machine learning (ML) and deep learning (DL) techniques in time-series classification,
+          anomaly detection, and source characterization in X-ray astronomy</li>
+        </ul>
+      </div>
+      <div class="cv-column">
+        <h3>Education & Experience</h3>
+        <ul>
+          <li><b>Postdoctoral Fellow</b> (Aug 2022- Aug 2025)</br> IUCAA, Pune, India</li>
+          <li><b>Ph.D. Physics</b> (Nov 2016-Jan 2023)</br> Jamia Millia Islamia, Delhi, India</li>
+          <li><b>M.Sc. Physics</b> (2014-2016) </br> Jamia Millia Islamia, Delhi, India</li>
+          <li><b>B.Sc. (Hons.) Physics</b> (2010-2013) </br> St. Stephen's College, Delhi, India</li>
+        </ul>
+      </div>
+      <div class="cv-column">
+        <h3>Skills</h3>
+        <ul>
+          <li><b>Languages:</b> Fortran, Python, Bash, Tcl scripting</li>
+          <li><b>ML/Data Science:</b> Supervised/unsupervised learning, Deep learning (ANN), Statistical modeling</li>
+          <li><b>Libraries/Frameworks:</b> Scikit-learn, PyTorch, pandas, NumPy, SciPy, Astropy</li>
+          <li><b>Tools:</b> Jupyter, Latex, Linux</li>
+          <li><b>Astronomy Software:</b> HEASOFT, Stingray, Ixpeobssim, Chandra/CIAO</li>
+          <li><b>X-ray pipelines:</b> LAXPC, SXT, NuSTAR, NICER, IXPE, Swift, RXTE</li>
+        </ul>
+      </div>
     </div>
-    <div class="cv-column">
-      <h3>Education & Experience</h3>
-      <ul>
-        <li><b>Postdoctoral Fellow</b> (Aug 2022- Aug 2025)</br> Inter-University Centre for Astronomy and Astrophysics (IUCAA), Pune, India</li>
-        <li><b>Ph.D. Physics</b> (Nov 2016-Jan 2023)</br> Jamia Millia Islamia, Delhi, India</li>
-        <li><b>M.Sc. Physics</b> (2014-2016) </br> Jamia Millia Islamia, Delhi, India</li>
-        <li><b>B.Sc. (Hons.) Physics</b> (2010-2013) </br> St. Stephen's College, Delhi, India</li>
-      </ul>
+    <p>Please find my detailed CV here: 
+      <a href="https://drive.google.com/file/d/1aDsVx3-wHWpYWUWt3JlK_viM9PvMqgwX/view?usp=sharing" 
+         target="_blank" style="color:#ffdd57;">Download CV</a>
+    </p>
+  </section>
+
+  <section id="outreach">
+    <h2>Public Outreach</h2>
+    <div style="text-align:left;">
+      <iframe 
+        src="https://www.youtube.com/embed/oShmNBURZT4" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
     </div>
-    <div class="cv-column">
-      <h3>Skills</h3>
-      <ul>
-        <li><b>Languages:</b> Fortran, Python, Bash, and Tcl scripting</li>
-        <li><b>ML/Data Science:</b> Supervised/unsupervised learning methods, Deep learning (ANN), Statistical modeling, and data pipelines.</li>
-        <li><b>Libraries/Frameworks:</b> Scikit-learn, PyTorch, pandas, NumPy, SciPy, Astropy</li>
-        <li><b>Tools:</b> Jupyter, Latex, Linux<li>
-        <li><b>Astronomy Software:</b> HEASOFT, Stingray, Ixpeobssim, Chandra/CIAO, Mathematica </li>
-        <li><b>X-ray pipelines:</b> LAXPC, SXT, NuSTAR, NICER, IXPE, Swift, RXTE </li>
-      </ul>
+    <p style="margin-top: 15px; text-align:left; max-width: 700px;">
+      A short outreach video for National Science Day 2024, organised at IUCAA, India, where I explain my research in X-ray astronomy and its broader impact. 
+      Stay tuned for more such videos in the future!
+    </p>
+  </section>
+
+  <section id="poems">
+    <h2>Poems</h2>
+    <p>
+      As I continue in my research journey, I sometimes sit back and try to put down what I have learnt in the form 
+      of <strong>poems</strong>. Here are some of them:
+    </p>
+    <div class="poem-gallery">
+      <img src="Poem1.png" alt="Poem 1" onclick="openModal(this)">
+      <img src="Poem2.png" alt="Poem 2" onclick="openModal(this)">
+      <img src="Poem3.png" alt="Poem 3" onclick="openModal(this)">
+      <img src="Poem4.png" alt="Poem 4" onclick="openModal(this)">
     </div>
+  </section>
+
+  <div id="imgModal" class="modal" onclick="closeModal()">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImg">
   </div>
-  <p>Please find my detailed CV here: <a href="https://drive.google.com/file/d/1aDsVx3-wHWpYWUWt3JlK_viM9PvMqgwX/view?usp=sharing" target="_blank" style="color:#ffdd57;">Download CV</a> </p>
-</section>
 
-<style>
-  #cv {
-    padding: 50px;
-  }
-  .cv-grid {
-  display: grid;
-  grid-template-columns: 26% 27% 50%; /* custom widths for each column */
-  column-gap: 30px; /* distance between them */
-  }
-
-  .cv-column {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 2px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(255,255,255,0.1);
-    text-align: left;
-  }
-
-  .cv-column h3 {
-    color: #ffdd57;
-    margin-bottom: 15px;
-    font-size: 1.3em;
-  }
-
-  .cv-column ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .cv-column ul li {
-    margin-bottom: 5px;
-  }
-</style>
-
-
-<section id="outreach">
-  <h2>Public Outreach</h2>
-  
-  <!-- YouTube video embed -->
-  <div style="text-align:left;">
-    <iframe width="560" height="315" 
-      src="https://www.youtube.com/embed/oShmNBURZT4" 
-      title="YouTube video player" 
-      frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen>
-    </iframe>
-  </div>
-  
-  <!-- Short description below -->
-  <p style="margin-top: 15px; text-align:left; max-width: 700px;">
-    A short outreach video for National Science Day 2024, organised at IUCAA, India, where I explain my research in X-ray astronomy and its broader impact. 
-    Stay tuned for more such videos in the future!
-  </p>
-</section>
-
-
-<section id="poems">
-  <h2>Poems</h2>
-  <p>
-    As I continue in my research journey, I sometimes sit back and try to put down what I have learnt in the form 
-    of <strong>poems</strong>. Here are some of them:
-  </p>
-
-  <!-- Poem gallery -->
-  <div class="poem-gallery">
-    <img src="Poem1.png" alt="Poem 1" onclick="openModal(this)">
-    <img src="Poem2.png" alt="Poem 1" onclick="openModal(this)">
-    <img src="Poem3.png" alt="Poem 1" onclick="openModal(this)">
-    <img src="Poem4.png" alt="Poem 1" onclick="openModal(this)">
-  </div>
-</section>
-
-<!-- Modal for enlarged image -->
-<div id="imgModal" class="modal" onclick="closeModal()">
-  <span class="close">&times;</span>
-  <img class="modal-content" id="modalImg">
-</div>
-
-<style>
-/* Gallery thumbnails */
-.poem-gallery {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  justify-content: left;
-}
-.poem-gallery img {
-  width: 200px;      /* Thumbnail size */
-  height: auto;
-  cursor: pointer;
-  border-radius: 12px;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.3);  /* Shadow effect */
-}
-.poem-gallery img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 18px rgba(0,0,0,0.4); /* Stronger shadow on hover */
-}
-
-/* Modal (fullscreen view) */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  padding-top: 60px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background: rgba(0,0,0,0.8);
-  text-align: center;
-}
-.modal-content {
-  max-width: 90%;
-  max-height: 80%;
-  box-shadow: 0 12px 24px rgba(0,0,0,0.6); /* Shadow for enlarged image */
-  border-radius: 12px;
-}
-.close {
-  position: absolute;
-  top: 20px;
-  right: 35px;
-  color: #fff;
-  font-size: 40px;
-  font-weight: bold;
-  cursor: pointer;
-}
-</style>
-
-<script>
-function openModal(imgElement) {
-  var modal = document.getElementById("imgModal");
-  var modalImg = document.getElementById("modalImg");
-  modal.style.display = "block";
-  modalImg.src = imgElement.src;
-}
-function closeModal() {
-  document.getElementById("imgModal").style.display = "none";
-}
-</script>
-
-</script>
-
+  <script>
+    function openModal(imgElement) {
+      var modal = document.getElementById("imgModal");
+      var modalImg = document.getElementById("modalImg");
+      modal.style.display = "block";
+      modalImg.src = imgElement.src;
+    }
+    function closeModal() {
+      document.getElementById("imgModal").style.display = "none";
+    }
+  </script>
 </body>
 </html>
