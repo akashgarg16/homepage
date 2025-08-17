@@ -9,9 +9,9 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      overflow: hidden;
       font-family: 'Segoe UI', 'Times New Roman', Times, serif;
       background: radial-gradient(ellipse at center, #000 0%, #020202 60%, #000 100%);
+      overflow-x: hidden; /* prevent sideways scroll */
     }
 
     /* Intro section */
@@ -25,6 +25,9 @@
       flex-direction: column;
       z-index: 1;
       transition: opacity 2s ease;
+      text-align: center;
+      padding: 0 15px;
+      box-sizing: border-box;
     }
 
     #stars {
@@ -58,6 +61,7 @@
       animation: fadeIn 2s ease-in-out 0.2s forwards;
       text-align: center;
       z-index: 2;
+      line-height: 1.4;
     }
 
     @keyframes fadeIn {
@@ -67,15 +71,16 @@
     /* About section */
     #about {
       display: flex;
+      flex-wrap: wrap;
       opacity: 0;
-      height: 100%;
+      min-height: 100vh;
       width: 100%;
       background: #111;
       color: white;
       justify-content: center;
       align-items: center;
       gap: 40px;
-      padding: 40px;
+      padding: 40px 20px;
       box-sizing: border-box;
       transition: opacity 2s ease;
     }
@@ -85,17 +90,17 @@
     }
 
     #about img {
-      width: 50vw;
-      height: auto;
+      width: 100%;
+      max-width: 450px;
       border-radius: 15px;
       box-shadow: 0 0 20px rgba(255,255,255,0.3);
       object-fit: cover;
     }
 
     #about-text {
-      max-width: 500px;
+      max-width: 600px;
       font-size: 1.2em;
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     /* Buttons */
@@ -118,6 +123,43 @@
     .nav-links a:hover {
       background: #ffdd57;
       color: #111;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      #name {
+        font-size: 1.8em;
+      }
+
+      #about {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      #about-text {
+        max-width: 95%;
+        font-size: 1em;
+        text-align: center;
+      }
+
+      h2 {
+        font-size: 1.3em;
+      }
+
+      p {
+        font-size: 0.95em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #name {
+        font-size: 1.4em;
+      }
+
+      .nav-links a {
+        padding: 8px 14px;
+        font-size: 0.9em;
+      }
     }
   </style>
 </head>
@@ -172,7 +214,7 @@
       container.appendChild(star);
     }
     
-    // Transition after 5 seconds
+    // Transition after 2.5 seconds
     setTimeout(() => {
       const intro = document.getElementById('intro');
       const about = document.getElementById('about');
